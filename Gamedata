@@ -1,0 +1,127 @@
+// ============================================================
+// CLIENT-SIDE GAME DATA
+// ============================================================
+
+const RARITIES = {
+  common:    { name: 'Common',     color: '#9ca3af', glow: '#9ca3af44', chance: 0.60,              tier: 1 },
+  uncommon:  { name: 'Uncommon',   color: '#22c55e', glow: '#22c55e44', chance: 0.25,              tier: 2 },
+  rare:      { name: 'Rare',       color: '#3b82f6', glow: '#3b82f644', chance: 0.10,              tier: 3 },
+  epic:      { name: 'Epic',       color: '#a855f7', glow: '#a855f744', chance: 0.04,              tier: 4 },
+  legendary: { name: 'Legendary',  color: '#f59e0b', glow: '#f59e0b44', chance: 0.009,             tier: 5 },
+  mythic:    { name: 'Mythic',     color: '#ef4444', glow: '#ef444444', chance: 0.0009,            tier: 6 },
+  divine:    { name: 'Divine',     color: '#ffffff', glow: '#ffffff44', chance: 0.0001,            tier: 7 },
+  ultra1:    { name: 'Ultra',      color: '#00ffff', glow: '#00ffff88', chance: 0.000001,          tier: 8,  display: '1 in 1,000,000' },
+  ultra2:    { name: 'Hyper',      color: '#ff00ff', glow: '#ff00ff88', chance: 0.00000001,        tier: 9,  display: '1 in 100,000,000' },
+  ultra3:    { name: 'Cosmic',     color: '#ffffff', glow: '#ffffff99', chance: 0.000000001,       tier: 10, display: '1 in 1,000,000,000' },
+  ultra4:    { name: 'Omnipotent', color: '#ffd700', glow: '#ffd70099', chance: 0.000000000001,    tier: 11, display: '1 in 1,000,000,000,000' },
+};
+
+const ITEMS = [
+  { id: 'c001', name: 'Rusty Coin',      rarity: 'common',    icon: '🪙', value: 5    },
+  { id: 'c002', name: 'Wooden Shield',   rarity: 'common',    icon: '🛡️', value: 8    },
+  { id: 'c003', name: 'Old Dagger',      rarity: 'common',    icon: '🗡️', value: 6    },
+  { id: 'c004', name: 'Bread Loaf',      rarity: 'common',    icon: '🍞', value: 3    },
+  { id: 'c005', name: 'Pebble',          rarity: 'common',    icon: '🪨', value: 2    },
+  { id: 'c006', name: 'Leather Boots',   rarity: 'common',    icon: '👢', value: 10   },
+  { id: 'c007', name: 'Hemp Rope',       rarity: 'common',    icon: '🧵', value: 4    },
+  { id: 'c008', name: 'Candle',          rarity: 'common',    icon: '🕯️', value: 3    },
+  { id: 'c009', name: 'Cloth Bandage',   rarity: 'common',    icon: '🩹', value: 5    },
+  { id: 'c010', name: 'Wooden Bow',      rarity: 'common',    icon: '🏹', value: 9    },
+  { id: 'c011', name: 'Fishing Rod',     rarity: 'common',    icon: '🎣', value: 7    },
+  { id: 'c012', name: 'Iron Nail',       rarity: 'common',    icon: '📌', value: 2    },
+  { id: 'c013', name: 'Empty Bottle',    rarity: 'common',    icon: '🍶', value: 4    },
+  { id: 'c014', name: 'Wool Hat',        rarity: 'common',    icon: '🎩', value: 6    },
+  { id: 'c015', name: 'Tin Cup',         rarity: 'common',    icon: '🫙', value: 3    },
+
+  { id: 'u001', name: 'Silver Ring',     rarity: 'uncommon',  icon: '💍', value: 50   },
+  { id: 'u002', name: 'Steel Sword',     rarity: 'uncommon',  icon: '⚔️', value: 65   },
+  { id: 'u003', name: 'Iron Helm',       rarity: 'uncommon',  icon: '⛑️', value: 55   },
+  { id: 'u004', name: 'Potion of Speed', rarity: 'uncommon',  icon: '🧪', value: 70   },
+  { id: 'u005', name: 'Copper Key',      rarity: 'uncommon',  icon: '🗝️', value: 45   },
+  { id: 'u006', name: 'Map Fragment',    rarity: 'uncommon',  icon: '🗺️', value: 60   },
+  { id: 'u007', name: 'Storm Scroll',    rarity: 'uncommon',  icon: '📜', value: 80   },
+  { id: 'u008', name: 'Fox Pelt',        rarity: 'uncommon',  icon: '🦊', value: 55   },
+  { id: 'u009', name: 'Magic Compass',   rarity: 'uncommon',  icon: '🧭', value: 75   },
+  { id: 'u010', name: 'Blue Crystal',    rarity: 'uncommon',  icon: '💎', value: 90   },
+  { id: 'u011', name: 'Shadow Cloak',    rarity: 'uncommon',  icon: '🧥', value: 85   },
+  { id: 'u012', name: 'Bone Charm',      rarity: 'uncommon',  icon: '🦴', value: 50   },
+
+  { id: 'r001', name: 'Enchanted Blade', rarity: 'rare',      icon: '🔷', value: 250  },
+  { id: 'r002', name: 'Dragon Scale',    rarity: 'rare',      icon: '🐉', value: 300  },
+  { id: 'r003', name: 'Mana Crystal',    rarity: 'rare',      icon: '🔮', value: 275  },
+  { id: 'r004', name: 'Thunder Gauntlet',rarity: 'rare',      icon: '⚡', value: 320  },
+  { id: 'r005', name: 'Phantom Mask',    rarity: 'rare',      icon: '👻', value: 290  },
+  { id: 'r006', name: 'Arcane Tome',     rarity: 'rare',      icon: '📖', value: 350  },
+  { id: 'r007', name: 'Vortex Staff',    rarity: 'rare',      icon: '🌀', value: 310  },
+  { id: 'r008', name: 'Ice Crown',       rarity: 'rare',      icon: '👑', value: 400  },
+  { id: 'r009', name: 'Fire Emblem',     rarity: 'rare',      icon: '🔥', value: 330  },
+  { id: 'r010', name: 'Moon Amulet',     rarity: 'rare',      icon: '🌙', value: 280  },
+
+  { id: 'e001', name: 'Void Blade',      rarity: 'epic',      icon: '🌑', value: 1200 },
+  { id: 'e002', name: 'Soul Gem',        rarity: 'epic',      icon: '💜', value: 1500 },
+  { id: 'e003', name: 'Titan Armor',     rarity: 'epic',      icon: '🛡️', value: 1800 },
+  { id: 'e004', name: 'Celestial Bow',   rarity: 'epic',      icon: '🌟', value: 1400 },
+  { id: 'e005', name: 'Chaos Orb',       rarity: 'epic',      icon: '🌪️', value: 2000 },
+  { id: 'e006', name: 'Phantom Crown',   rarity: 'epic',      icon: '👑', value: 2200 },
+  { id: 'e007', name: 'Elder Wand',      rarity: 'epic',      icon: '🪄', value: 1900 },
+  { id: 'e008', name: 'Abyssal Ring',    rarity: 'epic',      icon: '🖤', value: 1700 },
+
+  { id: 'l001', name: 'Sunforged Sword', rarity: 'legendary', icon: '☀️', value: 8000 },
+  { id: 'l002', name: 'Moonweave Robe',  rarity: 'legendary', icon: '🌕', value: 9500 },
+  { id: 'l003', name: 'Storm Trident',   rarity: 'legendary', icon: '🔱', value: 11000},
+  { id: 'l004', name: 'Infinity Gauntlet',rarity:'legendary', icon: '✊', value: 15000},
+  { id: 'l005', name: 'Phoenix Feather', rarity: 'legendary', icon: '🦅', value: 12000},
+  { id: 'l006', name: 'God Slayer',      rarity: 'legendary', icon: '⚔️', value: 20000},
+
+  { id: 'm001', name: 'Universe Key',    rarity: 'mythic',    icon: '🗝️', value: 75000 },
+  { id: 'm002', name: 'Star Fragment',   rarity: 'mythic',    icon: '⭐', value: 100000},
+  { id: 'm003', name: 'Reality Shard',   rarity: 'mythic',    icon: '💫', value: 120000},
+  { id: 'm004', name: 'Void Crystal',    rarity: 'mythic',    icon: '🔲', value: 90000 },
+
+  { id: 'd001', name: 'Divine Relic',    rarity: 'divine',    icon: '✨', value: 500000 },
+  { id: 'd002', name: 'Creation Orb',    rarity: 'divine',    icon: '🌈', value: 750000 },
+
+  { id: 'ur01', name: 'OMEGA SHARD',     rarity: 'ultra1',    icon: '💠', value: 5000000      },
+  { id: 'ur02', name: 'NEXUS CORE',      rarity: 'ultra2',    icon: '🔵', value: 50000000     },
+  { id: 'ur03', name: 'PRIMORDIAL EYE',  rarity: 'ultra3',    icon: '👁️', value: 500000000    },
+  { id: 'ur04', name: 'ABSOLUTE ZERO',   rarity: 'ultra4',    icon: '❄️', value: 999999999999 },
+];
+
+const CRATES = [
+  { id: 'starter',   name: 'Starter Crate',   price: 50,    icon: '📦', color: '#9ca3af', description: 'A basic crate for beginners.',         items: ['c001','c002','c003','c004','c005','c006','c007','c008','u001','u002','r001'] },
+  { id: 'warrior',   name: 'Warrior Crate',   price: 150,   icon: '⚔️', color: '#ef4444', description: 'Contains combat gear and weapons.',     items: ['c003','c010','u002','u003','r001','r004','e001','l006'] },
+  { id: 'mystic',    name: 'Mystic Crate',    price: 200,   icon: '🔮', color: '#a855f7', description: 'Magical artifacts and arcane items.',   items: ['u007','u010','r003','r006','r007','e002','e007','l002','m003'] },
+  { id: 'explorer',  name: 'Explorer Crate',  price: 120,   icon: '🗺️', color: '#22c55e', description: 'Tools for the adventurous spirit.',    items: ['c011','c012','u005','u006','u009','r010','e004','l005'] },
+  { id: 'shadow',    name: 'Shadow Crate',    price: 300,   icon: '🌑', color: '#6b21a8', description: 'Dark and mysterious contents.',         items: ['u011','u012','r005','e001','e008','l004','m001','m004'] },
+  { id: 'celestial', name: 'Celestial Crate', price: 500,   icon: '🌟', color: '#f59e0b', description: 'Items blessed by the heavens.',         items: ['r008','r010','e004','e006','l001','l002','l005','m002','d001'] },
+  { id: 'mythic',    name: 'Mythic Crate',    price: 1000,  icon: '💀', color: '#ef4444', description: 'For the most daring collectors.',       items: ['e001','e002','e005','l001','l003','l006','m001','m002','m003','m004','d001','d002'] },
+  { id: 'divine',    name: 'Divine Crate',    price: 2500,  icon: '✨', color: '#ffffff', description: 'Touched by divinity itself.',            items: ['l001','l002','l003','l004','l005','l006','m001','m002','m003','m004','d001','d002','ur01'] },
+  { id: 'void',      name: 'Void Crate',      price: 5000,  icon: '🕳️', color: '#000000', description: 'From the space between worlds.',       items: ['m001','m002','m003','m004','d001','d002','ur01','ur02'] },
+  { id: 'omega',     name: 'OMEGA Crate',     price: 10000, icon: '⚡', color: '#ffffff', description: 'The rarest crate in existence.',        items: ['d001','d002','ur01','ur02','ur03','ur04'] },
+];
+
+// Helper: get item by ID
+function getItem(id) { return ITEMS.find(i => i.id === id); }
+
+// Helper: get rarity info
+function getRarity(key) { return RARITIES[key] || RARITIES.common; }
+
+// Helper: format big numbers
+function fmtNum(n) {
+  if (n >= 1e12) return (n/1e12).toFixed(1) + 'T';
+  if (n >= 1e9)  return (n/1e9).toFixed(1)  + 'B';
+  if (n >= 1e6)  return (n/1e6).toFixed(1)  + 'M';
+  if (n >= 1e3)  return (n/1e3).toFixed(1)  + 'K';
+  return String(n);
+}
+
+// Helper: rarity display odds
+function rarityOdds(key) {
+  const r = RARITIES[key];
+  if (!r) return '';
+  if (r.display) return r.display;
+  const pct = (r.chance * 100);
+  if (pct >= 1) return pct.toFixed(0) + '%';
+  if (pct >= 0.1) return pct.toFixed(1) + '%';
+  return '1 in ' + Math.round(1/r.chance).toLocaleString();
+}
