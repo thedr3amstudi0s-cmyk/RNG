@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>CrateVault — Unlock the Impossible</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- AUTH SCREEN -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="auth-screen" class="screen active">
+  <div class="auth-bg">
+    <div class="auth-particles" id="auth-particles"></div>
+  </div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="logo-icon">⚡</div>
+      <h1 class="logo-text">CRATE<span>VAULT</span></h1>
+      <p class="logo-sub">Unlock the Impossible</p>
+    </div>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">LOGIN</button>
+        <button class="auth-tab" data-tab="register">REGISTER</button>
+      </div>
+      <div class="auth-form" id="login-form">
+        <div class="form-group">
+          <label>USERNAME</label>
+          <input type="text" id="login-username" placeholder="Enter username" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label>PASSWORD</label>
+          <input type="password" id="login-password" placeholder="Enter password" autocomplete="current-password" />
+        </div>
+        <button class="btn-primary" id="login-btn">ENTER THE VAULT</button>
+        <div class="auth-error" id="login-error"></div>
+      </div>
+      <div class="auth-form hidden" id="register-form">
+        <div class="form-group">
+          <label>USERNAME</label>
+          <input type="text" id="reg-username" placeholder="Choose username (3-20 chars)" autocomplete="username" />
+        </div>
+        <div class="form-group">
+          <label>PASSWORD</label>
+          <input type="password" id="reg-password" placeholder="Choose password (6+ chars)" autocomplete="new-password" />
+        </div>
+        <button class="btn-primary" id="register-btn">CREATE ACCOUNT</button>
+        <div class="auth-error" id="reg-error"></div>
+        <p class="auth-note">🎁 New players start with <strong>500 coins</strong>!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- MAIN GAME -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="game-screen" class="screen">
+
+  <!-- TOP NAV -->
+  <header class="top-nav">
+    <div class="nav-logo">⚡ CRATEVAULT</div>
+    <div class="nav-stats">
+      <div class="coin-display">
+        <span class="coin-icon">🪙</span>
+        <span id="coin-balance">0</span>
+      </div>
+    </div>
+    <div class="nav-right">
+      <span class="player-name" id="nav-username">—</span>
+      <button class="btn-ghost" id="logout-btn">EXIT</button>
+    </div>
+  </header>
+
+  <!-- GLOBAL ANNOUNCEMENT BANNER -->
+  <div id="global-banner" class="global-banner hidden"></div>
+
+  <!-- MAIN CONTENT AREA -->
+  <div class="game-layout">
+
+    <!-- SIDEBAR / NAV -->
+    <nav class="side-nav">
+      <button class="nav-item active" data-page="crates">
+        <span class="nav-icon">📦</span><span class="nav-label">CRATES</span>
+      </button>
+      <button class="nav-item" data-page="inventory">
+        <span class="nav-icon">🎒</span><span class="nav-label">INVENTORY</span>
+      </button>
+      <button class="nav-item" data-page="trade">
+        <span class="nav-icon">🤝</span><span class="nav-label">TRADE</span>
+      </button>
+      <button class="nav-item" data-page="leaderboard">
+        <span class="nav-icon">🏆</span><span class="nav-label">RANKS</span>
+      </button>
+      <button class="nav-item" data-page="history">
+        <span class="nav-icon">📋</span><span class="nav-label">HISTORY</span>
+      </button>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <main class="page-content">
+
+      <!-- ─── CRATES PAGE ─────────────────────────────── -->
+      <section class="page active" id="page-crates">
+        <div class="page-header">
+          <h2>CRATE SHOP</h2>
+          <p>Roll for rare items. Fortune favors the bold.</p>
+        </div>
+        <div class="crates-grid" id="crates-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ─── CRATE OPENING ───────────────────────────── -->
+      <section class="page" id="page-opening">
+        <div class="crate-open-header">
+          <button class="btn-back" id="back-from-opening">← BACK</button>
+          <h2 id="opening-crate-name">CRATE</h2>
+        </div>
+
+        <!-- Crate Info Panel -->
+        <div class="crate-info-panel" id="crate-info-panel">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Spin Track -->
+        <div class="spin-container" id="spin-container">
+          <div class="spin-indicator"></div>
+          <div class="spin-track" id="spin-track">
+            <!-- Items populated by JS -->
+          </div>
+        </div>
+
+        <!-- Open Button Area -->
+        <div class="open-controls">
+          <div class="open-price-display" id="open-price-display"></div>
+          <button class="btn-open" id="btn-open-crate">OPEN CRATE</button>
+          <div class="open-coins-info">Balance: <span id="opening-coin-balance">0</span> 🪙</div>
+        </div>
+
+        <!-- Result Panel -->
+        <div class="result-panel hidden" id="result-panel">
+          <div class="result-inner">
+            <div class="result-icon" id="result-icon"></div>
+            <div class="result-name" id="result-name"></div>
+            <div class="result-rarity" id="result-rarity"></div>
+            <div class="result-value" id="result-value"></div>
+            <div class="result-buttons">
+              <button class="btn-keep" id="btn-keep-item">KEEP ITEM</button>
+              <button class="btn-sell-result" id="btn-sell-result">SELL FOR COINS</button>
+              <button class="btn-open-again" id="btn-open-again">OPEN AGAIN</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── INVENTORY PAGE ──────────────────────────── -->
+      <section class="page" id="page-inventory">
+        <div class="page-header">
+          <h2>INVENTORY</h2>
+          <div class="inv-controls">
+            <input type="text" id="inv-search" placeholder="🔍 Search items..." class="search-input" />
+            <select id="inv-sort" class="sort-select">
+              <option value="rarity">Sort: Rarity</option>
+              <option value="value">Sort: Value</option>
+              <option value="name">Sort: Name</option>
+              <option value="newest">Sort: Newest</option>
+            </select>
+            <button class="btn-sell-selected" id="btn-sell-selected">SELL SELECTED</button>
+          </div>
+        </div>
+        <div class="inv-stats">
+          <span id="inv-count">0 items</span>
+          <span id="inv-total-value">Total value: 0 🪙</span>
+        </div>
+        <div class="inventory-grid" id="inventory-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ─── TRADE PAGE ───────────────────────────────── -->
+      <section class="page" id="page-trade">
+        <div class="page-header">
+          <h2>TRADING</h2>
+          <p>⚠️ Always double-check items before finalizing a trade.</p>
+        </div>
+
+        <!-- Online Players List -->
+        <div class="trade-players-panel" id="trade-players-panel">
+          <h3>ONLINE PLAYERS</h3>
+          <div id="online-players-list" class="online-players-list">
+            <div class="no-players">No other players online</div>
+          </div>
+        </div>
+
+        <!-- Trade Room (hidden until trade starts) -->
+        <div class="trade-room hidden" id="trade-room">
+          <div class="trade-warning-banner">
+            ⚠️ ANTI-SCAM PROTECTION ACTIVE — Read items carefully before accepting!
+          </div>
+          <div class="trade-panels">
+            <!-- Your side -->
+            <div class="trade-panel" id="trade-panel-you">
+              <div class="trade-panel-header">
+                <span>YOUR OFFER</span>
+                <span id="trade-you-name" class="trade-player-label">You</span>
+              </div>
+              <div class="trade-items-zone" id="trade-items-you">
+                <div class="trade-empty-hint">Click items from your inventory below to add</div>
+              </div>
+              <div class="trade-status-you" id="trade-status-you">—</div>
+            </div>
+            <!-- Their side -->
+            <div class="trade-vs">VS</div>
+            <div class="trade-panel" id="trade-panel-them">
+              <div class="trade-panel-header">
+                <span>THEIR OFFER</span>
+                <span id="trade-them-name" class="trade-player-label">Partner</span>
+              </div>
+              <div class="trade-items-zone" id="trade-items-them">
+                <div class="trade-empty-hint">Waiting for partner...</div>
+              </div>
+              <div class="trade-status-them" id="trade-status-them">—</div>
+            </div>
+          </div>
+
+          <!-- Your inventory mini for trade -->
+          <div class="trade-inv-section">
+            <h4>YOUR INVENTORY (click to add/remove from offer)</h4>
+            <div class="trade-inventory-grid" id="trade-inventory-mini"></div>
+          </div>
+
+          <!-- Trade Controls -->
+          <div class="trade-controls">
+            <button class="btn-accept-trade" id="btn-accept-trade">✓ ACCEPT</button>
+            <button class="btn-cancel-trade" id="btn-cancel-trade">✗ CANCEL</button>
+          </div>
+          <div class="trade-message" id="trade-message"></div>
+        </div>
+
+        <!-- Final Confirm Modal -->
+        <div class="trade-final-modal hidden" id="trade-final-modal">
+          <div class="trade-final-inner">
+            <h3>⚠️ FINAL CONFIRMATION</h3>
+            <p>Review the trade one last time. This cannot be undone.</p>
+            <div class="final-trade-summary" id="final-trade-summary"></div>
+            <div class="countdown-display" id="countdown-display">
+              Final accept available in <span id="countdown-num">5</span>...
+            </div>
+            <button class="btn-final-accept disabled" id="btn-final-accept" disabled>FINAL ACCEPT</button>
+            <button class="btn-cancel-final" id="btn-cancel-final">CANCEL</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ─── LEADERBOARD PAGE ────────────────────────── -->
+      <section class="page" id="page-leaderboard">
+        <div class="page-header">
+          <h2>LEADERBOARDS</h2>
+        </div>
+        <div class="lb-tabs">
+          <button class="lb-tab active" data-lb="richest">💰 Richest</button>
+          <button class="lb-tab" data-lb="mostCrates">📦 Most Crates</button>
+          <button class="lb-tab" data-lb="mostValue">💎 Top Value</button>
+        </div>
+        <div class="leaderboard-list" id="leaderboard-list">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ─── TRADE HISTORY PAGE ──────────────────────── -->
+      <section class="page" id="page-history">
+        <div class="page-header">
+          <h2>TRADE HISTORY</h2>
+        </div>
+        <div class="history-list" id="history-list">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- CHAT PANEL -->
+    <aside class="chat-panel">
+      <div class="chat-header">💬 GLOBAL CHAT</div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="Type message..." maxlength="200" />
+        <button id="chat-send">SEND</button>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- ITEM TOOLTIP -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div class="item-tooltip hidden" id="item-tooltip">
+  <div class="tooltip-icon" id="tt-icon"></div>
+  <div class="tooltip-name" id="tt-name"></div>
+  <div class="tooltip-rarity" id="tt-rarity"></div>
+  <div class="tooltip-desc" id="tt-desc"></div>
+  <div class="tooltip-value" id="tt-value"></div>
+</div>
+
+<!-- TOAST NOTIFICATIONS -->
+<div id="toast-container"></div>
+
+<!-- ULTRA RARE OVERLAY -->
+<div class="ultra-overlay hidden" id="ultra-overlay">
+  <div class="ultra-inner">
+    <div class="ultra-rays"></div>
+    <div class="ultra-icon" id="ultra-icon">💠</div>
+    <div class="ultra-text" id="ultra-text">ULTRA RARE!</div>
+    <div class="ultra-sub" id="ultra-sub">You pulled something extraordinary!</div>
+    <button class="btn-ultra-close" id="btn-ultra-close">INCREDIBLE!</button>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/gameData.js"></script>
+<script src="/js/app.js"></script>
+</body>
+</html>
